@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { Form, Button, Alert } from 'react-bootstrap';
+import { Form, Button, Alert, Modal } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../actions/userActions';
 // import { withRouter } from 'react-router';
 
 import FormContainer from '../components/formContainer.component';
 import Loader from '../components/loader.component';
-const Login = ({ location, history }) => {
+const Login = ({ history }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [warnMsg, setWarnMsg] = useState('');
@@ -16,13 +16,14 @@ const Login = ({ location, history }) => {
   const userLogin = useSelector((state) => state.userLogin);
   const { loading, error, userInfo } = userLogin;
 
-  const redirect = location.search ? location.search.split('=')[1] : '/posts';
+  // const redirect = location.search ? location.search.split('=')[1] : '/posts';
 
   useEffect(() => {
     if (userInfo) {
-      history.push(redirect);
+      // history.push(redirect);
+      history.goBack();
     }
-  }, [history, userInfo, redirect]);
+  }, [history, userInfo]);
 
   const submitHandler = (e) => {
     e.preventDefault();

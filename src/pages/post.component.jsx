@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getPost, getComments } from '../actions/postActions';
-import { Container, Card, ListGroup, Badge } from 'react-bootstrap';
+import { Container, Card, ListGroup, Badge, Alert } from 'react-bootstrap';
 import { withRouter, useHistory } from 'react-router-dom';
-
+import Loader from '../components/loader.component';
 const Post = (match) => {
   const history = useHistory();
 
@@ -28,7 +28,13 @@ const Post = (match) => {
   }, [dispatch, match, userInfo]);
   return (
     <Container>
-      {loading ? 'l' : error ? 'e' : ''}
+      {loading ? (
+        <Loader></Loader>
+      ) : error ? (
+        <Alert variant='danger'>{error}</Alert>
+      ) : (
+        ''
+      )}
       {post && (
         <Card className='m-4'>
           <Card.Header style={{ fontSize: '2rem' }}>{post.title}</Card.Header>

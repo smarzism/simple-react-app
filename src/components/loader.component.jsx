@@ -7,14 +7,14 @@ const Loader = ({}) => {
       animation='border'
       role='status'
       style={{
-        width: '10px',
-        height: '10px',
+        width: '20px',
+        height: '20px',
         display: 'block',
         margin: 'auto',
         color: '',
       }}
     >
-      <span className='sr-only'>Loading</span>
+      <span className='sr-only'></span>
     </Spinner>
   );
 };

@@ -25,11 +25,6 @@ function Header() {
   };
   return (
     <Navbar>
-      {/*  <div className='App'>
-      <header className='App-header'>
-       
-      </header> */}
-
       <Container>
         <Navbar.Brand href='/'>
           <Row>
@@ -57,6 +52,7 @@ function Header() {
         ) : (
           <Nav className='me-auto'>
             <Nav.Link href='/login'>ورود</Nav.Link>
+            <Nav.Link href='/loginmodal'>ورود با مدال!</Nav.Link>
           </Nav>
         )}
       </Container>

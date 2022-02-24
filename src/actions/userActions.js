@@ -30,7 +30,7 @@ export const login = (userid, password) => async (dispatch) => {
       type: USER_LOGIN_REQUEST,
     });
     if (password != '123456') {
-      throw Error('wrong password');
+      throw Error('رمز اشتباه است');
     }
     console.log({ userid });
     const { data } = await axios.get(
@@ -41,7 +41,7 @@ export const login = (userid, password) => async (dispatch) => {
 
     localStorage.setItem('userInfo', JSON.stringify(data));
   } catch (error) {
-    if (error.message.includes('404')) error.message = 'user not found';
+    if (error.message.includes('404')) error.message = 'کاربر موجود نیست';
     dispatch({
       type: USER_LOGIN_FAIL,
       payload: error.message,

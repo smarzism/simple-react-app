@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUserPostList } from '../actions/postActions';
-import { Container, Card } from 'react-bootstrap';
+import { Container, Card, Alert } from 'react-bootstrap';
 import { withRouter, useHistory } from 'react-router-dom';
-
+import Loader from '../components/loader.component';
 const Posts = () => {
   const history = useHistory();
   const dispatch = useDispatch();
@@ -23,7 +23,13 @@ const Posts = () => {
 
   return (
     <Container>
-      {loading ? 'l' : error ? 'e' : ''}
+      {loading ? (
+        <Loader></Loader>
+      ) : error ? (
+        <Alert variant='danger'>{error}</Alert>
+      ) : (
+        ''
+      )}
       {posts &&
         posts.map((p) => (
           <Card className='m-4' key={p.id}>
