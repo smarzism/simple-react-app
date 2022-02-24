@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { Form, Button, Alert } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../actions/userActions';
+// import { withRouter } from 'react-router';
+
 import FormContainer from '../components/formContainer.component';
 import Loader from '../components/loader.component';
 const Login = ({ location, history }) => {
@@ -14,7 +16,7 @@ const Login = ({ location, history }) => {
   const userLogin = useSelector((state) => state.userLogin);
   const { loading, error, userInfo } = userLogin;
 
-  const redirect = location.search ? location.search.split('=')[1] : '/';
+  const redirect = location.search ? location.search.split('=')[1] : '/posts';
 
   useEffect(() => {
     if (userInfo) {
@@ -25,10 +27,10 @@ const Login = ({ location, history }) => {
   const submitHandler = (e) => {
     e.preventDefault();
     if (!username) {
-      setWarnMsg('enter username');
+      setWarnMsg('نام کاربری را وارد کنید');
     } else {
       if (!password) {
-        setWarnMsg('enter password');
+        setWarnMsg('رمز را وارد کنید');
       } else {
         setWarnMsg('');
         dispatch(login(username, password));
@@ -49,27 +51,27 @@ const Login = ({ location, history }) => {
       )}
       <Form onSubmit={submitHandler}>
         <Form.Group controlId='username'>
-          <Form.Label>username</Form.Label>
+          <Form.Label>نام کاربری</Form.Label>
           <Form.Control
             type='number'
-            placeholder='enter userid as your username'
+            placeholder='آیدی کاربر را به عنوان نام کاربری وارد کنید'
             value={username}
             onChange={(e) => setUsername(e.target.value)}
           ></Form.Control>
         </Form.Group>
 
         <Form.Group controlId='password'>
-          <Form.Label>password</Form.Label>
+          <Form.Label>رمز عبور</Form.Label>
           <Form.Control
             type='password'
-            placeholder='enter your password (hint:123456)'
+            placeholder='رمز عبور را وارد کنید (راهنما:123456)'
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           ></Form.Control>
         </Form.Group>
 
         <Button type='submit' varient='primary' className='my-2'>
-          submit
+          ورود
         </Button>
       </Form>
     </FormContainer>

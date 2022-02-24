@@ -1,9 +1,18 @@
+* {
+  font-family: 'Almarai';
+}
+*::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  font-family: 'Almarai';
+  opacity: 1; /* Firefox */
+}
+
 .App {
   text-align: center;
 }
 
 .App-logo {
-  height: 30vmin;
+  height: 10vmin;
   pointer-events: none;
 }
 
