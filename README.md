@@ -68,3 +68,17 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+### what it can do
+
+https://jsonplaceholder.ir/users/{userId}
+https://jsonplaceholder.ir/posts?userId={userId}
+https://jsonplaceholder.ir/posts/{postId}
+https://jsonplaceholder.ir/comments?postId={postId}
+
+React app that covers the following concerns:
+
+- Login: a modal with '/login' route. user can login using `user${userId}` as username and '123456' as password, if the user exists in its' endpoint. If the user is logged in then he should be redirected to '/posts' route.
+- Posts: all posts by logged in user. User navigates to post's page by click on its' title. If the user isn't logged in then the app should blur the page and show login modal with '/login' route and after login the previous page is displayed.
+- Post: display post content and comments by getting post id in url. If the user isn't logged in then the app should blur the page and show login modal with '/login' route and after login the previous page is displayed.
+- Logout: user stays logged in unless the logout button is pressed and the app must consider the user as logout.
