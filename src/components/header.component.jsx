@@ -38,7 +38,7 @@ function Header() {
             </Col>
             <Col>
               {userInfo && (
-                <Nav className='me-auto'>
+                <Nav className='me-auto my-2'>
                   <Nav.Link href='/'>
                     <Badge className='dark'>{userInfo && userInfo.name}</Badge>
                   </Nav.Link>

@@ -6,9 +6,12 @@ import {
   POST_FAIL,
   POST_REQUEST,
   POST_SUCCESS,
+  COMMENTS_REQUEST,
+  COMMENTS_SUCCESS,
+  COMMENTS_FAIL,
 } from '../constants/postConstants';
 
-export const userPostList = (userid) => async (dispatch) => {
+export const getUserPostList = (userid) => async (dispatch) => {
   try {
     dispatch({ type: POST_LIST_REQUEST });
 
@@ -27,10 +30,9 @@ export const userPostList = (userid) => async (dispatch) => {
   }
 };
 
-export const thePost = (postid) => async (dispatch, getState) => {
+export const getPost = (postid) => async (dispatch) => {
   try {
     dispatch({ type: POST_REQUEST });
-
     const { data } = await axios.get(
       `https://jsonplaceholder.ir/posts/${postid}`
     );
@@ -38,6 +40,24 @@ export const thePost = (postid) => async (dispatch, getState) => {
   } catch (error) {
     dispatch({
       type: POST_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
+
+export const getComments = (postid) => async (dispatch) => {
+  try {
+    dispatch({ type: COMMENTS_REQUEST });
+    const { data } = await axios.get(
+      `https://jsonplaceholder.ir/comments?postId=${postid}`
+    );
+    dispatch({ type: COMMENTS_SUCCESS, payload: data });
+  } catch (error) {
+    dispatch({
+      type: COMMENTS_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message
